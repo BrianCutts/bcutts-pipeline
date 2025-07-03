@@ -1,3 +1,3 @@
 # bcutts-pipeline
 
-This was my attempt at craeting a data pipeline using Spring Boot. 
+This was my attempt at creating a data pipeline using Spring Boot. 
