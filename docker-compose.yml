@@ -1,21 +1,15 @@
 services:
   db:
-    container_name: postgres
     image: postgres:latest
     environment:
-      POSTGRES_USER: bcutts
-      POSTGRES_PASSWORD: password
-      PGDATA: /data/postgres
-    volumes:
-      - db:/data/postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: fhirdb
     ports:
-      - "5332:5432"
-    networks:
-      - db
-    restart: unless-stopped
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
 
-networks:
-  db:
-    driver: bridge
 volumes:
-  db:
+  postgres_data:
+
