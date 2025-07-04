@@ -11,8 +11,8 @@ This is a prototype data pipeline using Spring Boot that receives Patient data i
 
 ## Prerequisites
 
-- Java 21
-- Maven 3.9.9
+- Java 21+
+- Maven 3.9.9+
 - Docker and Docker Compose (optional for running PostgreSQL)
 
 ## Build
@@ -51,7 +51,7 @@ curl -X POST http://localhost:8080/api/v1/patient \
     "birthDate": "1990-01-01"
   }'
 ```
-If the post was successful you should receive a `201 Created` and the extracted data stored in your running instance of postgres.
+If the post was successful you should receive a `201 Created` and the extracted data will be stored in your running instance of postgres.
 
 ## Testing
 ```bash
