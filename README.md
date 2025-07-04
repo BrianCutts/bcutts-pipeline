@@ -11,8 +11,8 @@ This is a prototype data pipeline using Spring Boot that receives Patient data i
 
 ## Prerequisites
 
-- Java 21
-- Maven 3.9.9
+- Java 21+
+- Maven 3.9.9+
 - Docker and Docker Compose (optional for running PostgreSQL)
 
 ## Build
@@ -41,9 +41,7 @@ The application starts on port 8080 by default.
 ## POST FHIR JSON
 
 ```bash
-curl -X POST http://localhost:8080/api/v1/patient \
-  -H "Content-Type: application/json" \
-  -d '{
+$ curl -i -X POST http://localhost:8080/api/v1/patient   -H "Content-Type: application/json"   -d '{
     "resourceType": "Patient",
     "id": "abc-123",
     "name": [{ "given": ["John"], "family": "Doe" }],
@@ -51,7 +49,18 @@ curl -X POST http://localhost:8080/api/v1/patient \
     "birthDate": "1990-01-01"
   }'
 ```
-If the post was successful you should receive a `201 Created` and the extracted data stored in your running instance of postgres.
+If the post was successful a `201 created` will be returned and the extracted data will be stored in your running instance of postgres.
+
+## Checking the Database
+If you are running the postgres container using docker, you can check to see that the POST you made with cURL (or any other tool) has
+loaded into the database
+
+```bash
+$ docker exec -it bcutts-pipeline-db-1 psql -U postgres
+```
+```sql
+postgres=# SELECT * FROM patient_row;
+```
 
 ## Testing
 ```bash
